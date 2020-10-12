@@ -1,6 +1,7 @@
 package br.com.gustavoakira.master.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,12 @@ public class TelephoneService {
 	}
 	
 	public Telephone findById(Long id) {
-		return telephoneRepository.getOne(id);
+		Optional<Telephone>optional = telephoneRepository.findById(id);
+		if(optional.isPresent()) {
+			return optional.get();
+		}else {
+			return null;
+		}
 	}
 	
 	public Telephone save(Telephone telephone) {

@@ -1,6 +1,7 @@
 package br.com.gustavoakira.master.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,12 @@ public class PartyService {
 	}
 	
 	public Party findById(Long id) {
-		return repository.getOne(id);
+		Optional<Party>optional = repository.findById(id);
+		if(optional.isPresent()) {
+			return optional.get();
+		}else {
+			return null;
+		}
 	}
 	
 	public Party save(Party party) {
