@@ -34,7 +34,9 @@ public class ClientService {
 	}
 	@Transactional
 	public String deleteById(Long id) {
-		repository.deleteById(id);
+		if(findById(id)!= null) {
+			repository.deleteById(id);
+		}
 		return "ok";
 	}
 }

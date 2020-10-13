@@ -33,7 +33,9 @@ public class TelephoneService {
 	}
 	
 	public String deleteById(Long id) {
-		telephoneRepository.deleteById(id);
+		if(findById(id)!=null) {
+			telephoneRepository.deleteById(id);
+		}
 		return "ok";
 	}
 }

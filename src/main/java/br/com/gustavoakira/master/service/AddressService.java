@@ -38,7 +38,9 @@ public class AddressService {
 	}
 	
 	public String deleteById(Long id) {
-		addressRepository.deleteById(id);
+		if(getOne(id)!= null) {
+			addressRepository.deleteById(id);
+		}
 		return "ok";
 	}
 }

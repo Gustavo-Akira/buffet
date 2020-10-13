@@ -3,6 +3,7 @@ package br.com.gustavoakira.master.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.gustavoakira.master.model.Party;
@@ -10,6 +11,7 @@ import br.com.gustavoakira.master.repository.PartyRepository;
 
 @Service
 public class PartyService {
+	@Autowired
 	private PartyRepository repository;
 	
 	public List<Party> getAll(){
@@ -30,7 +32,9 @@ public class PartyService {
 	}
 	
 	public String deleteById(Long id) {
-		repository.deleteById(id);
+		if(findById(id)!= null) {
+			repository.deleteById(id);
+		}
 		return "ok";
 	}
 }
