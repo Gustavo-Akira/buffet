@@ -35,7 +35,12 @@ class AddressServiceTest {
 	
 	@Test
 	void getOne() {
-		Address one = addressService.getOne(2L);
+		Address one = null;
+		Long x = 0L;
+		while(one == null) {
+			x +=1L;
+			one = addressService.getOne(x);
+		}
 		assertNotEquals(null,one);
 	}
 	
@@ -43,5 +48,15 @@ class AddressServiceTest {
 	void getOneError() {
 		Address one = addressService.getOne(30L);
 		assertEquals(null, one);
+	}
+	
+	@Test
+	void delete() {
+		Long x= 3L;
+		while(addressService.getOne(x) == null) {
+			x +=1L;
+		}
+		String ok  =addressService.deleteById(x);
+		assertEquals("ok",ok);
 	}
 }
