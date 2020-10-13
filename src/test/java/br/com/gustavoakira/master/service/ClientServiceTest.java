@@ -1,5 +1,6 @@
 package br.com.gustavoakira.master.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.text.ParseException;
@@ -24,13 +25,27 @@ class ClientServiceTest {
 		Client client = new Client();
 		client.setName("Gustavo Akira");
 		client.setDateOfEnroll(date);
-		clientService.save(client);
+		client = clientService.save(client);
+		System.out.println(client);
 	}
 	
 	@Test
 	void getAll() {
 		List<Client> client = clientService.getAll();
-		client.stream().forEach(System.out::println);
+		client.stream().forEach(x->System.out.println(x));
 		assertNotEquals(null, client);
+	}
+	
+	@Test
+	void getOne() {
+		Client client =clientService.findById(10L);
+		assertNotEquals(null, client);
+	}
+	
+	@Test
+	void remove() {
+		clientService.deleteById(7L);
+		Client client = clientService.findById(7L);
+		assertEquals(null, client);
 	}
 }
