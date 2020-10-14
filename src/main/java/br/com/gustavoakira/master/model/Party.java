@@ -14,6 +14,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Party {
@@ -33,7 +34,7 @@ public class Party {
 	private Time initHour;
 	
 	private Time endHour;
-	
+	@JsonIgnore
 	@ManyToOne
 	private Client client;
 	

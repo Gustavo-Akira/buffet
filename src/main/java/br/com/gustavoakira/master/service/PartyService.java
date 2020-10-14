@@ -14,6 +14,9 @@ public class PartyService {
 	@Autowired
 	private PartyRepository repository;
 	
+	@Autowired 
+	private AddressService addressService;
+	
 	public List<Party> getAll(){
 		return repository.findAll(); 
 	}
@@ -27,7 +30,10 @@ public class PartyService {
 		}
 	}
 	
-	public Party save(Party party) {
+	public Party save(Party party, Long id) {
+		if(party.getAddress() == null) {
+			party.setAddress(addressService.getOne(id));
+		}
 		return repository.save(party);
 	}
 	
@@ -36,5 +42,9 @@ public class PartyService {
 			repository.deleteById(id);
 		}
 		return "ok";
+	}
+
+	public void updateAddress(Long id, Long addressId) {
+		findById(id).setAddress(addressService.getOne(addressId));
 	}
 }

@@ -16,6 +16,9 @@ public class AddressService {
 	@Autowired 
 	private AddressRepository addressRepository;
 	
+	@Autowired
+	private PartyService partyService;
+	
 	@Transactional(readOnly = true)
 	public List<Address> getAll(){
 		return addressRepository.findAll();
@@ -42,5 +45,9 @@ public class AddressService {
 			addressRepository.deleteById(id);
 		}
 		return "ok";
+	}
+	
+	public Address getByParty(Long id) {
+		return partyService.findById(id).getAddress();
 	}
 }

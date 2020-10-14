@@ -1,5 +1,6 @@
 package br.com.gustavoakira.master.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,10 +34,10 @@ public class Client {
 	private Date dateOfEnroll;
 	
 	@OneToMany(mappedBy = "client",orphanRemoval = true,cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Telephone> telephone;
+	private List<Telephone> telephone = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "client",orphanRemoval = true,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Party> party;
+	private List<Party> party = new ArrayList<>();
 	
 	public Long getId() {
 		return id;

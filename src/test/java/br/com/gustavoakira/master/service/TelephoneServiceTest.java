@@ -23,7 +23,7 @@ class TelephoneServiceTest {
 		telephone.setNumber("954506404");
 		telephone.setRegion("11");
 		telephone.setClient(null);
-		telephone = service.save(telephone);
+		telephone = service.save(telephone, null);
 		System.out.print(telephone);
 		assertNotEquals(null, telephone);
 	}

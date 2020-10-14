@@ -1,5 +1,6 @@
 package br.com.gustavoakira.master.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,7 +31,7 @@ public class Address {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "address",cascade = CascadeType.ALL,orphanRemoval = true)
-	private List<Party> party;
+	private List<Party> party = new ArrayList<>();
 
 	public Long getId() {
 		return id;

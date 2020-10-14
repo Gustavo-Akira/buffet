@@ -16,7 +16,7 @@ class AddressServiceTest {
 	@Autowired
 	AddressService addressService;
 	
-	//@Test
+	@Test
 	void save() {
 		Address address = new Address();
 		address.setCity("Mogi das Cruzes");

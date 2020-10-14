@@ -14,6 +14,8 @@ public class TelephoneService {
 	
 	@Autowired
 	private TelephoneRepository telephoneRepository;
+	@Autowired
+	private ClientService clientService;
 	
 	public List<Telephone> getAll(){
 		return telephoneRepository.findAll();
@@ -28,7 +30,10 @@ public class TelephoneService {
 		}
 	}
 	
-	public Telephone save(Telephone telephone) {
+	public Telephone save(Telephone telephone,Long id) {
+		if(telephone.getClient() == null) {
+			telephone.setClient(clientService.findById(id));
+		}
 		return telephoneRepository.save(telephone);
 	}
 	
@@ -37,5 +42,9 @@ public class TelephoneService {
 			telephoneRepository.deleteById(id);
 		}
 		return "ok";
+	}
+
+	public List<Telephone> getByClient(Long id) {
+		return clientService.findById(id).getTelephone();
 	}
 }

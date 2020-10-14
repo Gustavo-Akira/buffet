@@ -38,7 +38,7 @@ class PartyServiceTest {
 		party.setInitHour(Time.valueOf("11:11:11"));
 		party.setEndHour(Time.valueOf("23:11:11"));
 		party.setTheme("Birthday");
-		party = partyService.save(party);
+		party = partyService.save(party,2L);
 		assertNotEquals(null, party.getId());
 	}
 	@Test

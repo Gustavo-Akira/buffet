@@ -29,20 +29,32 @@ class ClientServiceTest {
 		System.out.println(client);
 	}
 	
-	@Test
+	//@Test
 	void getAll() {
 		List<Client> client = clientService.getAll();
 		client.stream().forEach(x->System.out.println(x));
 		assertNotEquals(null, client);
 	}
 	
-	@Test
+	//@Test
 	void getOne() {
 		Client client =clientService.findById(10L);
+		System.out.println(client);
 		assertNotEquals(null, client);
 	}
 	
 	@Test
+	void update() throws ParseException {
+		Date date = new SimpleDateFormat("dd/MM/yyyy").parse("20/11/2019");
+		Client client = new Client();
+		client.setName("Souzones");
+		client.setDateOfEnroll(date);
+		client = clientService.save(client);
+		client.setId(10L);
+		System.out.println(clientService.save(client));
+	}
+	
+	//@Test
 	void remove() {
 		clientService.deleteById(7L);
 		Client client = clientService.findById(7L);

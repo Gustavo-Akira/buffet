@@ -30,6 +30,11 @@ public class ClientService {
 	}
 	@Transactional
 	public Client save(Client client) {
+		if(client.getTelephone() != null) {
+			for(int pos=0;pos<client.getTelephone().size(); pos++){
+				client.getTelephone().get(pos).setClient(client);
+			}
+		}
 		return repository.save(client);
 	}
 	@Transactional
